@@ -1,0 +1,434 @@
+.page-content {
+    padding: 35px 40px;
+    height: 100%;
+    background-color: #c0a16b;
+}
+
+
+/***
+Portlets
+***/
+.portlet  {
+    clear: both;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    padding: 0px;
+}
+
+.portlet-title {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.portlet-title:after,
+.portlet-title:before {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.portlet-title:after {
+    clear: both;
+}
+
+.portlet-title .caption {
+    float: left;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 7px;
+}
+
+.portlet-title .caption i {
+    float: left;
+    margin-top: 5px;
+    display: inline-block !important;
+    font-size: 13px;
+    margin-right: 5px;
+    color: #666;
+}
+
+.portlet.blue > .portlet-title .caption, .portlet-title.blue .caption{
+    color: #fff;
+}
+
+.portlet.box.blue > .portlet-title .caption > i{
+    color: #fff;
+}
+
+.sortable .portlet .portlet-title {
+    cursor: move;
+}
+
+.portlet-title .tools,
+.portlet-title .actions
+{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    margin-top: 6px;
+    float: right;
+}
+
+.portlet-title .tools > a {
+    display: inline-block;
+    height: 16px;
+    margin-left:5px;
+}
+
+.portlet-title .tools > a.remove {
+    background-image:url(../image/portlet-remove-icon.png);
+    background-repeat: no-repeat;
+    width: 11px;
+}
+
+.portlet-title .tools > a.config {
+    background-image:url(../image/portlet-config-icon.png);
+    background-repeat: no-repeat;
+    width: 12px;
+}
+
+.portlet-title .tools > a.reload {
+    background-image:url(../image/portlet-reload-icon.png);
+    width: 13px;
+}
+
+.portlet-title .tools > a.expand {
+    background-image:url(../image/portlet-expand-icon.png);
+    width: 14px;
+}
+
+.portlet-title .tools > a.collapse {
+    background-image:url(../image/portlet-collapse-icon.png);
+    width: 14px;
+}
+
+.portlet-title .tools > a:hover {
+    text-decoration: none;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    opacity:.6;
+    filter:'alpha(opacity=60)';
+}
+
+.portlet-title .actions > .btn-group {
+    margin-top: -12px;
+}
+
+.portlet-title .actions > .btn {
+    padding: 4px 10px;
+    margin-top: -13px;
+}
+
+.portlet-title .actions > .btn-group > .btn {
+    padding: 4px 10px;
+    margin-top: -1px;
+}
+
+.portlet-title .actions > .btn.mini {
+    margin-top: -12px;
+    padding: 4px 10px;
+}
+
+.portlet-title .pagination.pagination-small {
+    float: right !important;
+    display: inline-block !important;
+    margin: 0px;
+    margin-top: -2px;
+}
+
+.portlet-body {
+    clear: both;
+    padding: 0;
+}
+
+.portlet-body.light-blue, .portlet.light-blue {
+    background-color: #bfd5fa  !important;
+}
+
+.portlet-body.blue, .portlet.blue {
+   /** background-color: #4b8df8 !important;*/
+}
+
+
+.portlet-body.light-grey, .portlet.light-grey {
+    background-color: #fafafa !important;
+}
+
+.portlet-body.dark-grey, .portlet.dark-grey {
+    background-color: #555555 !important;
+}
+
+.portlet-body .btn-toolbar {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.portlet-body .btn-group {
+    float: left;
+    margin: 10px !important;
+    padding: 0px !important;
+    margin-bottom: 10px !important;
+}
+/***
+Box portlet
+***/
+
+
+.portlet.box {
+    padding:0px !important
+}
+
+.portlet.box .portlet-title {
+    padding:8px 10px 2px 10px;
+    border-bottom: 1px solid #eee;
+    color: #fff !important;
+}
+
+.portlet.box .portlet-title > .actions > .btn > i {
+    color: #fff !important;
+}
+
+.portlet.box .portlet-title .tools {
+    margin-top: 3px;
+}
+
+.portlet.box .portlet-title .tools > a.remove,
+.portlet.solid .portlet-title .tools > a.remove {
+    background-image:url(../image/portlet-remove-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.config,
+.portlet.solid .portlet-title .tools > a.config {
+    background-image:url(../image/portlet-config-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.reload,
+.portlet.solid .portlet-title .tools > a.reload {
+    background-image:url(../image/portlet-reload-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.expand,
+.portlet.solid .portlet-title .tools > a.expand {
+    background-image:url(../image/portlet-expand-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.collapse,
+.portlet.solid .portlet-title .tools > a.collapse {
+    background-image:url(../image/portlet-collapse-icon-white.png);
+}
+
+/* portlet buttons */
+.portlet.box .portlet-body {
+    background-color: #fff;
+    padding: 10px;
+}
+
+.portlet.box .portlet-title {
+    margin-bottom: 0px;
+}
+
+.portlet.box.blue .portlet-title {
+    background-color: #4b8df8;
+}
+
+.portlet.box.blue {
+    border: 1px solid #b4cef8;
+    border-top: 0;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+a:hover, a:active {
+    outline: 0 !important;
+}
+
+select:focus {
+    outline: none !important;
+}
+
+.btn {
+    background-color: #e5e5e5;
+    background-image: none;
+    filter: none;
+    border: 0;
+    padding: 3px 6px;
+    text-shadow: none;
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    cursor: pointer;
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 5 !important;
+    -moz-border-radius: 5 !important;
+    border-radius: 5 !important;
+}
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn[disabled],
+.btn.disabled {
+    color: #333333;
+    background-color: #d8d8d8 !important;
+}
+
+.btn.red-stripe
+{
+    border-left: 3px solid #d84a38;
+}
+
+.btn.blue-stripe
+{
+    border-left: 3px solid #4d90fe;
+}
+
+.btn.purple-stripe
+{
+    border-left: 3px solid #852b99;
+}
+
+.btn.green-stripe
+{
+    border-left: 3px solid #35aa47;
+}
+
+.btn.yellow-stripe {
+    border-left: 3px solid #ffb848;
+}
+
+/*  Red */
+.btn.red {
+    color: white;
+    text-shadow: none;
+    background-color: #d84a38;
+}
+.btn.red:hover,
+.btn.red:focus,
+.btn.red:active,
+.btn.red.active,
+.btn.red[disabled],
+.btn.red.disabled {
+    background-color: #bb2413 !important;
+    color: #fff !important;
+}
+
+/*  Blue */
+.btn.transparent
+{
+    color: black;
+    text-shadow: none;
+    background-color: transparent;
+}
+
+.btn.blue
+{
+    color: white;
+    text-shadow: none;
+    background-color: #4d90fe;
+}
+.btn.blue:hover,
+.btn.blue:focus,
+.btn.blue:active,
+.btn.blue.active,
+.btn.blue[disabled],
+.btn.blue.disabled {
+    background-color: #0362fd !important;
+    color: #fff !important;
+}
+
+/*  Green */
+.btn.green {
+    color: white;
+    text-shadow: none;
+    background-color: #35aa47;
+}
+.btn.green:hover,
+.btn.green:focus,
+.btn.green:active,
+.btn.green.active,
+.btn.green.disabled,
+.btn.green[disabled]{
+    background-color: #1d943b !important;
+    color: #fff !important;
+}
+
+/*  Purple */
+.btn.purple {
+    color: white;
+    text-shadow: none;
+    background-color: #852b99;
+}
+.btn.purple:hover,
+.btn.purple:focus,
+.btn.purple:active,
+.btn.purple.active,
+.btn.purple.disabled,
+.btn.purple[disabled] {
+    background-color: #6d1b81 !important;
+    color: #fff !important;
+}
+
+.btn.yellow {
+    color: white;
+    text-shadow: none;
+    background-color: #ffb848;
+}
+.btn.yellow:hover,
+.btn.yellow:focus,
+.btn.yellow:active,
+.btn.yellow.active,
+.btn.yellow.disabled,
+.btn.yellow[disabled] {
+    background-color: #eca22e !important;
+    color: #fff !important;
+}
+
+.btn.black {
+    color: white;
+    text-shadow: none;
+    background-color: #555555;
+}
+.btn.black:hover,
+.btn.black:focus,
+.btn.black:active,
+.btn.black.active,
+.btn.black.disabled,
+.btn.black[disabled] {
+    background-color: #222222 !important;
+    color: #fff !important;
+}
+
+.p-btn{
+   margin-bottom: 0px;
+   text-align: left;
+}
+
+.form-view{
+    background-color:#ceced1;
+    padding-left: 5px;
+}
+.form-view .controls {
+    display: inline-block;
+}
+
+.form-view .span6 {
+    text-align: left;
+}
+.dropdown-menu li a{
+    width:100%;
+    border-radius: 0px;
+    border: 0px;
+}
+
+

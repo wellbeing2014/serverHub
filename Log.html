@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="log" ng-controller="logCtrl">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+
+    div{margin:0px;padding:0px;}
+    #dashboard-report-range1{
+        background-color: #006600;
+        /*display: inline;*/
+
+        position:fixed;
+        _position:absolute;
+        top:2px;
+        _top:2px;
+        _margin-top:expression(this.style.pixelHeight)
+    }
+
+    #dashboard-report-range1 div{
+        float:left;
+        margin-left: 2px;
+       
+    }
+
+    .pre {
+        display: block;
+        padding: 2px;
+        padding-left: 10px;
+        margin:  0 0 0 20px;
+        font-size: 13px;
+        color: #333;
+        word-break: break-all;
+        word-wrap: break-word;
+        border-radius:0px;
+        border: 0px ;
+    }
+    .highlight{
+        background-color: #008800;
+        border-radius: 2px;
+    }
+
+</style>
+<head>
+<title>{{titleName}}</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="angular/angular-toggle-switch.css" rel="stylesheet" type="text/css"/>
+    <link href="angular/angular-toggle-switch-bootstrap.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body >
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" style="font-size: 24px">日志监控</a>
+            <a class="navbar-brand" >{{titleName}}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" >
+
+                <li>
+                    <input style="margin-top: 10px;float: left;position: relative;width: 200px;height: 30px" type="text" class="form-control" ng-hide="!iskeyword" ng-model="keyword" value="com.wisoft" />
+                    <toggle-switch style="margin-top: 10px;right: -200px" data-model="iskeyword" knob-label="高亮"></toggle-switch>
+                </li>
+                <li>
+                    <toggle-switch style="margin-top: 10px" data-model="isScroll" knob-label="滚屏"></toggle-switch>
+                    <button type="button" class="btn btn-danger"
+                            style="margin-top: 10px;
+                                    margin-left:20px;
+                                    height: 30px;
+                                    float: right;
+                                    position: relative;
+                                    padding-top: 5px"
+                            ng-click="logs=[]"
+                     >
+                        清屏
+                    </button>
+                </li>
+
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div id="main">
+
+    <div id="content"  style="margin-top:60px">
+            <log1  ng-repeat="logitem in logs track by $index" class="pre">{{logitem}}</log1>
+    </div>
+
+    <span id="msg_end" style="height:5px;overflow:hidden"></span>
+
+</div>
+
+<script src="bootstrap/js/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
+<script src="angular/angular.js" type="text/javascript"></script>
+<script src="angular/angular-toggle-switch.min.js" type="text/javascript"></script>
+<script src="js/myangular.js" type="text/javascript"></script>
+<script src="js/angular-websocket.js" type="text/javascript"></script>
+</body>
+</html>
