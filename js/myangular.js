@@ -2,16 +2,22 @@
  * Created by ZhuXinpei on 2014-08-05.
  */
 
-var app = angular.module('main', ['angular-websocket','toggle-switch'], angular.noop).config(function(WebSocketProvider){
-    var wsURL = "ws://localhost:8001/WisoftServers/message?siteIp=192.10.110.54";
-    WebSocketProvider
-        .prefix('')
-        .uri(wsURL);
+var serverIp = window.location.host;
+var siteIp = (getQueryString(siteIp)==null)?"192.10.110.206":getQueryString(siteIp);
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+
+var app = angular.module('main', ['angular-websocket','toggle-switch'], angular.noop);
+app.config(function(WebSocketProvider){
+    var wsURL = "ws://"+serverIp+"/WisoftServers/message?siteIp="+siteIp;
+    WebSocketProvider.prefix('').uri(wsURL);
 });
 
 app.filter('serviceStatus',function(){
     var filter = function(input){
-
         switch (input)
         {
             case 0:
@@ -64,10 +70,9 @@ app.filter('searcher',function(){
 });
 
 app.controller('DemoCtrl', function($scope,$http,WebSocket) {
-
         $http({
             method : 'POST',
-            url : 'http://localhost:8001/WisoftServers/initServlet',
+            url : 'http://'+serverIp+'/WisoftServers/initServlet',
             params : {adminPassword:null}
         }).then(function(response) {
             if("true"==response.data)
@@ -81,7 +86,7 @@ app.controller('DemoCtrl', function($scope,$http,WebSocket) {
             console.log($scope.adminPassword);
             $http({
                 method : 'POST',
-                url : 'http://localhost:8001/WisoftServers/initServlet',
+                url : 'http://'+serverIp+'/WisoftServers/initServlet',
                 params : {adminPassword:$scope.adminPassword}
             }).then(function(response) {
                 if("true"==response.data)
@@ -95,7 +100,7 @@ app.controller('DemoCtrl', function($scope,$http,WebSocket) {
             console.log($scope.adminPassword);
             $http({
                 method : 'POST',
-                url : 'http://localhost:8001/WisoftServers/initServlet',
+                url : 'http://'+serverIp+'/WisoftServers/initServlet',
                 params : {isLogout:true}
             }).then(function() {
                     $scope.isAdmin = false;
@@ -104,59 +109,24 @@ app.controller('DemoCtrl', function($scope,$http,WebSocket) {
         };
         $scope.titleName="演示服务器";
         $scope.serverIp = "未知";
-
         $scope.freeMon = "未知";
         $scope.totalMon ="未知";
         $scope.cpuPercent = "0%";
         //0表示正在启动，1表示已启动,2表示正在停止，3表示已停止
-        $scope.tableData=
-            [   {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://www.baidu.com/","operation":3,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":0,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":1,"locked":true,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":2,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"locked":false,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":0,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":1,"locked":true,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":2,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"locked":false,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":0,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":1,"locked":true,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":2,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"locked":false,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"}
-            ];
+        $scope.tableData= [];
        // $scope.tableData1=servicesList.data;
-
+        WebSocket.uri = "ws://"+serverIp+"/WisoftServers/message?siteIp="+siteIp;
         WebSocket.onopen(function() {
-
         });
 
         WebSocket.onclose(function(){
-            console.log("关掉了websocket");
-            $scope.titleName="演示服务器(这个是好看好看的)";
+          //  console.log("关掉了websocket");
+            $scope.titleName="控制台被关闭";
             $scope.serverIp = "未知";
             $scope.freeMon = "未知";
             $scope.totalMon ="未知";
             $scope.cpuPercent = "0%";
-
-            $scope.tableData=
-                [   {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://www.baidu.com/","operation":3,"dburl":"11231231","path":"1231231","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":0,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":1,"locked":true,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":2,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"locked":false,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":0,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":1,"locked":true,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":2,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"locked":false,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":0,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":1,"locked":true,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"},
-                    {"port":"8080","no":"1","name":"中科惠软信息管理系统","url":"http://192.10.110.206/qlyg/","operation":2,"locked":true,"dburl":"1","path":"1","sid":"1fe0a14c9a904562976557d94e3fb1ee"},
-                    {"port":"8080","no":"0","name":"无锡行政服务中心系统","url":"http://192.10.110.206/qlyg/","operation":3,"locked":false,"dburl":"1","path":"1","sid":"298dc17b1abc424db68aa91538f0cc42"}
-                ];
+            $scope.tableData=[];
         });
         WebSocket.onmessage(function(event) {
            var info = JSON.parse(event.data);
@@ -175,7 +145,6 @@ app.controller('DemoCtrl', function($scope,$http,WebSocket) {
         });
 
         $scope.operationServer=function(item,type,event){
-
             event.stopPropagation();
             var operationLog = new Object();
             operationLog.operateTime = null;
@@ -184,9 +153,7 @@ app.controller('DemoCtrl', function($scope,$http,WebSocket) {
             operationLog.opreateSid = item.sid;
             operationLog.siteName = $scope.serverIp;
             WebSocket.send(JSON.stringify(operationLog));
-
         }
-
         $scope.ExpandNum = -1;
         $scope.showDetail = function($index){
            // console.log('测试点击','点击行');
@@ -198,8 +165,9 @@ app.controller('DemoCtrl', function($scope,$http,WebSocket) {
 
 });
 
+
 var applog = angular.module('log', ['angular-websocket','toggle-switch'], angular.noop).config(function(WebSocketProvider,$locationProvider){
-    var wsURL = "ws://localhost:8001/WisoftServers/logs";
+    var wsURL = "ws://"+serverIp+"/WisoftServers/logs";
     WebSocketProvider.prefix('').uri(wsURL);
     $locationProvider.html5Mode(true);
 });
@@ -219,13 +187,7 @@ applog.controller('logCtrl',function($scope,WebSocket,$location,$anchorScroll){
         angular.forEach(logs,function(log){
             $scope.logs.push(log);
         });
-
-
     });
-    $scope.getLog = function(){
-        var str = "fuck com.wisoft1.common发生的金发扩散到将发生地方";
-        $scope.logs.push(str);
-    };
     $scope.scrollToBottom=function(){
         if($scope.isScroll){
             $location.hash('msg_end');
